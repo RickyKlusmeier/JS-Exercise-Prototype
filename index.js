@@ -88,10 +88,9 @@ function Airplane(name) {
   }
 
   Car.prototype.fill = function(gallons){
-    return this.tank = {gallons};
+    this.tank += gallons;
   }
   
-  Car.this.fill(10);
   
   /*
     TASK 3
@@ -100,18 +99,23 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
-  }
- 
-  
+ function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
+}
+
+  Baby.prototype = Object.create(Person.prototype);
+
+  Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. When used not inside of anything, it will have global scope and use the window.
+    2. Strict mode changes the way that the this keyword will display when it is called.
+    3. When using this with a call function, it will use that to pass in new this.
+    4. This calls for whatever object is in scope of this keyword.
   */
   
   
